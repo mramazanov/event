@@ -3,6 +3,7 @@ package ru.javajabka.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.javajabka.model.Event;
+import ru.javajabka.model.EventDTO;
 import ru.javajabka.repository.EventRepository;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
+
+    public void createEvent(List<EventDTO> events) {
+        eventRepository.insert(events);
+    }
 
     public List<Event> getAllEvents(final Long taskId) {
         return eventRepository.findAllEvents(taskId);

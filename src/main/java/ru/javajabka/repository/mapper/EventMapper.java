@@ -1,4 +1,4 @@
-package ru.javajabka.repository.Mapper;
+package ru.javajabka.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/2025041441920_init_tables.sql
+  - include:
+      file: db/changelog/2025042341255_add_index.sql

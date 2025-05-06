@@ -1,0 +1,1 @@
+CREATE INDEX test1_id_index ON event_service.event (id);

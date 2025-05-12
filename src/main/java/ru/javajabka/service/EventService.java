@@ -7,6 +7,7 @@ import ru.javajabka.model.Event;
 import ru.javajabka.model.EventDTO;
 import ru.javajabka.repository.EventRepository;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,14 @@ public class EventService {
     }
 
     @Transactional(readOnly = true)
-    public List<Event> getAllEvents(final Long taskId) {
-        return eventRepository.findAllEvents(taskId);
+    public List<Event> getAllEvents(final Set<Long> taskIds) {
+        validate(taskIds);
+        return eventRepository.findAllEvents(taskIds);
+    }
+
+    private void validate(Set<Long> taskIds) {
+        if (taskIds.isEmpty()) {
+            throw new RuntimeException("Список задача пустой");
+        }
     }
 }

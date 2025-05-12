@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.javajabka.model.Event;
 import ru.javajabka.service.EventService;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class EventController {
 
     @GetMapping
     @Operation(summary = "Найти события")
-    public List<Event> getEventsTask(@RequestParam final Long id) {
-        return eventService.getAllEvents(id);
+    public List<Event> getEventsTask(@RequestParam final Set<Long> ids) {
+        return eventService.getAllEvents(ids);
     }
 }

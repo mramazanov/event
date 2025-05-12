@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import ru.javajabka.model.Event;
 import ru.javajabka.model.EventDTO;
 import ru.javajabka.repository.mapper.EventMapper;
+
 import java.util.List;
+import java.util.Set;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,10 +21,11 @@ public class EventRepository {
             VALUES (:eventName, :taskId, :from, :to, :eventDateTime)
     """;
 
-    private static final String FIND_ALL_EVENTS_BY_TASK_ID = """
+    private static final String FIND_ALL_EVENTS_BY_TASK_IDS = """
             SELECT * FROM event_service.event
-            WHERE task_id = :taskId;
+            WHERE task_id IN (:taskIds);
             """;
+
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final EventMapper eventMapper;
@@ -31,7 +34,7 @@ public class EventRepository {
         jdbcTemplate.batchUpdate(INSERT, SqlParameterSourceUtils.createBatch(events));
     }
 
-    public List<Event> findAllEvents(Long taskId) {
-        return jdbcTemplate.query(FIND_ALL_EVENTS_BY_TASK_ID, new MapSqlParameterSource("taskId", taskId), eventMapper);
+    public List<Event> findAllEvents(Set<Long> taskIds) {
+        return jdbcTemplate.query(FIND_ALL_EVENTS_BY_TASK_IDS, new MapSqlParameterSource("taskIds", taskIds), eventMapper);
     }
 }

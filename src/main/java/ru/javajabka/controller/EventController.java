@@ -12,7 +12,7 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/event")
-@Tag(name = "История задач")
+@Tag(name = "История событий")
 public class EventController {
 
     private final EventService eventService;

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import ru.javajabka.model.Event;
 import ru.javajabka.model.EventDTO;
 import ru.javajabka.repository.mapper.EventMapper;
-
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +24,6 @@ public class EventRepository {
             SELECT * FROM event_service.event
             WHERE task_id IN (:taskIds);
             """;
-
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final EventMapper eventMapper;

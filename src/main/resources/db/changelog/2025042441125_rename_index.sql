@@ -1,0 +1,1 @@
+ALTER INDEX event_service.test1_id_index RENAME TO event_id_index;
